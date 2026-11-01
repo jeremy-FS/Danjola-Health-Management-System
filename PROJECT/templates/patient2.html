@@ -1,0 +1,88 @@
+{% extends "base2.html" %}
+{% block title %}Manage Patients{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Patients List</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+            <tr>
+                <td>{{ patient.id }}</td>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.email or 'N/A' }}</td>
+                <td>{{ patient.gender }}</td>
+                <td>{{ patient.age }}</td>
+                <td>
+                    <a href="{{ url_for('view_patient', pid=patient.pid) }}" class="btn btn-info btn-sm">View</a>
+
+                    {% if current_user.usertype in ["Doctor", "Nurse"] %}
+                        <a href="{{ url_for('edit_patient', pid=patient.pid) }}" class="btn btn-warning btn-sm">Edit</a>
+                    {% endif %}
+
+                    {% if current_user.usertype == "Admin" %}
+                        <a href="{{ url_for('view_patient', pid=patient.pid) }}" class="btn btn-info btn-sm">View</a>
+                        <a href="{{ url_for('edit_patient', pid=patient.pid) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ url_for('delete_patient', pid=patient.pid) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if current_user.usertype in ["Admin", "Doctor", "Nurse"] %}
+    <!-- Button to open Add Patient Modal -->
+    <button class="btn btn-primary mt-3" data-toggle="modal" data-target="#addPatientModal">Add New Patient</button>
+    {% endif %}
+</div>
+
+<!-- Add Patient Modal -->
+<div id="addPatientModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Patient</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('add_patient') }}" method="POST" enctype="multipart/form-data">
+                    <input type="text" name="name" placeholder="Full Name" class="form-control" required>
+                    <input type="email" name="email" placeholder="Email (Optional)" class="form-control mt-2">
+                    <select name="gender" class="form-control mt-2" required>
+                        <option value="" disabled selected>Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <input type="number" name="age" placeholder="Age" class="form-control mt-2" required>
+                    <input type="text" name="slot" placeholder="Appointment Slot" class="form-control mt-2" value="Not Assigned">
+                    <input type="text" name="disease" placeholder="Disease" class="form-control mt-2" value="Unknown">
+                    <input type="text" name="time" placeholder="Time" class="form-control mt-2" value="N/A">
+                    <input type="text" name="date" placeholder="Date" class="form-control mt-2" value="N/A">
+                    <input type="text" name="dept" placeholder="Department" class="form-control mt-2" value="General">
+                    <input type="text" name="number" placeholder="Contact Number" class="form-control mt-2">
+
+                    
+                    <!-- File Upload for ID & Insurance -->
+                    <label class="mt-2">Upload Patient Documents (ID, Insurance Card)</label>
+                    <input type="file" name="patient_documents" class="form-control mt-2" multiple>
+
+                    <button type="submit" class="btn btn-success mt-3">Register Patient</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

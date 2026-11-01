@@ -1,0 +1,87 @@
+{% extends "base2.html" %}
+{% block title %}Manage Users{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Manage Users</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.usertype }}</td>
+                <td>{{ user.status }}</td>
+                <td>
+                    <form action="{{ url_for('delete_user', user_id=user.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+
+                    <form action="{{ url_for('freeze_user', user_id=user.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-warning btn-sm">Freeze</button>
+                    </form>
+
+                    <form action="{{ url_for('unfreeze_user', user_id=user.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-success btn-sm">Unfreeze</button>
+                    </form>
+
+                    <form action="{{ url_for('upgrade_user', user_id=user.id) }}" method="POST" style="display:inline;">
+                        <select name="new_role" class="form-control d-inline" style="width: auto;">
+                            <option selected>Select</option>
+                            <option value="Doctor">Doctor</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Receptionist">Receptionist</option>
+                            <option value="Pharmacist">Pharmacist</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                        <button type="submit" class="btn btn-info btn-sm">Upgrade</button>
+                    </form>
+
+                    <button class="btn btn-primary btn-sm" onclick="showEditModal('{{ user.id }}', '{{ user.username }}', '{{ user.email }}')">Edit</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Edit User Modal -->
+<div id="editUserModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit User</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editUserForm" method="POST">
+                    <input type="text" id="editUsername" name="username" class="form-control" required>
+                    <input type="email" id="editEmail" name="email" class="form-control mt-2" required>
+                    <input type="password" id="editPassword" name="password" class="form-control mt-2" placeholder="New Password (optional)">
+                    <button type="submit" class="btn btn-success mt-3">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function showEditModal(userId, username, email) {
+    document.getElementById("editUserForm").action = "/update-user/" + userId;
+    document.getElementById("editUsername").value = username;
+    document.getElementById("editEmail").value = email;
+    $("#editUserModal").modal("show");
+}
+</script>
+
+{% endblock %}

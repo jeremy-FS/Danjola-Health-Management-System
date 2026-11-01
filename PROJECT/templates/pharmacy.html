@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Pharmacy Management{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Pharmacy Management</h2>
+    <ul>
+        <li><a href="{{ url_for('medications') }}" class="btn btn-primary">View Medications</a></li>
+        <li><a href="{{ url_for('inventory') }}" class="btn btn-warning mt-2">Manage Inventory</a></li>
+        <li><a href="{{ url_for('prescriptions') }}" class="btn btn-info mt-2">Process Prescriptions</a></li>
+    </ul>
+</div>
+{% endblock %}
+

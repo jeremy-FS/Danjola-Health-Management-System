@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Doctor-Nurse Chat{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Live Chat (Doctor & Nurse)</h2>
+    <div id="chat-box" style="border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll;">
+        <!-- Messages will be displayed here -->
+    </div>
+
+    <input type="text" id="messageInput" class="form-control mt-3" placeholder="Type your message...">
+    <button id="sendButton" class="btn btn-primary mt-2">Send</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://127.0.0.1:5000');
+
+    // Listen for incoming messages
+    socket.on('message', function (data) {
+        let chatBox = document.getElementById("chat-box");
+        chatBox.innerHTML += "<p><strong>" + data.user + ":</strong> " + data.message + "</p>";
+        chatBox.scrollTop = chatBox.scrollHeight;  // Auto-scroll to the latest message
+    });
+
+    // Send messages
+    document.getElementById("sendButton").addEventListener("click", function () {
+        let message = document.getElementById("messageInput").value;
+        if (message) {
+            socket.send({'message': message});
+            document.getElementById("messageInput").value = "";  // Clear input after sending
+        }
+    });
+</script>
+{% endblock %}

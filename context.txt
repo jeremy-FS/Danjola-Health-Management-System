@@ -1,0 +1,99 @@
+PRMS Management
+│
+├── Administrator
+│   ├── User Management
+│   │   ├── Add New Users (Admin, Doctor, Nurse, Receptionist, Pharmacy Staff)
+│   │   ├── Remove Users
+│   │   ├── Update User Information (Roles, Credentials)
+│   │   └── Manage User Roles and Privileges
+│   │
+│   ├── System Configuration
+│   │   ├── Manage System Settings (Backup, Security Policies)
+│   │   ├── Configure Database Settings
+│   │   ├── Audit Logs and Monitoring
+│   │   └── Backup and Restore Data
+│   │
+│   └── Reporting and Analytics
+│       ├── Generate System-wide Reports
+│       │   ├── User Activity Reports
+│       │   ├── Appointment Statistics
+│       │   ├── Financial Overview (Billing, Revenue)
+│       │   └── Clinical Reports (Patient Outcomes, Diagnosis Trends)
+│       └── Export and Share Reports
+│
+├── Doctor
+│   ├── Patient Management
+│   │   ├── View Assigned Patient Records
+│   │   ├── Access Patient Medical History
+│   │   ├── Update Clinical Notes
+│   │   ├── Add New Patient Conditions
+│   │   └── Print Patient Reports
+│   │
+│   ├── Diagnosis and Treatment
+│   │   ├── Create and Update Diagnosis
+│   │   ├── Prescribe Medications
+│   │   ├── Order Lab Tests
+│   │   ├── Review Lab Results
+│   │   └── Approve or Cancel Appointments
+│   │
+│   └── Prescription and Follow-ups
+│       ├── Issue Prescriptions
+│       ├── Review Medication Adherence
+│       ├── Schedule Follow-up Appointments
+│       └── Print Prescription Summary
+│
+├── Nurse
+│   ├── Patient Monitoring
+│   │   ├── Access Patient Records and Medical History
+│   │   ├── Monitor and Log Patient Vital Signs
+│   │   ├── Highlight Changes in Patient Condition
+│   │   ├── Add Clinical Notes (Under Doctor's Supervision)
+│   │   └── Print Patient Health Summaries
+│   │
+│   ├── Medication Administration
+│   │   ├── Access Medication Schedules
+│   │   ├── Record Medication Given
+│   │   └── Update Medication Compliance Records
+│   │
+│   └── Appointment Assistance
+│       ├── Assist in Patient Preparation for Appointments
+│       ├── Monitor Patient Follow-ups
+│       └── Provide Feedback on Patient Conditions to Doctors
+│
+├── Receptionist
+│   ├── Patient Registration
+│   │   ├── Add New Patient Profiles (Individual or Family)
+│   │   ├── Update Existing Patient Profiles
+│   │   ├── Upload Patient Documents (ID, Insurance Cards)
+│   │   └── Verify and Validate Patient Information
+│   │
+│   ├── Appointment Scheduling
+│   │   ├── Book New Appointments for Patients
+│   │   ├── Reschedule or Cancel Appointments
+│   │   ├── View Doctors' Availability
+│   │   └── Send Appointment Reminders to Patients
+│   │
+│   └── Billing and Invoicing
+│       ├── Generate Patient Bills for Services
+│       ├── Send Bills to Pharmacy Unit (For Medication Costs)
+│       ├── Track Payments and Outstanding Balances
+│       ├── Update Payment Status (Paid/Unpaid)
+│       └── Print Receipts for Patients
+│
+└── Pharmacy Unit
+    ├── Prescription Management
+    │   ├── Access Prescriptions Issued by Doctors
+    │   ├── Prepare Medication Based on Prescription
+    │   ├── Track Medication Stock Levels
+    │   └── Verify Prescription Authenticity
+    │
+    ├── Billing and Invoicing
+    │   ├── Generate Bills for Dispensed Medications
+    │   ├── Calculate Costs Based on Current Drug Prices
+    │   └── Update Billing Records Sent from Receptionist
+    │
+    └── Stock and Inventory Management
+        ├── Monitor Medication Inventory Levels
+        ├── Order New Medication Supplies
+        └── Maintain Records of Stock In and Out
+

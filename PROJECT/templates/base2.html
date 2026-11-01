@@ -1,0 +1,172 @@
+<span class="navbar-toggler-icon"></span>
+</button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+
+            {% if current_user.is_authenticated %}
+
+                {% if current_user.usertype == "Admin" %}
+                <li class="nav-item"><a class="nav-link" href="/signup">Create Users</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/manage-users">Manage Users</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/patients">Manage Patients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/appointments">Appointments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/reports">Reports</a></li>
+
+                {% elif current_user.usertype == "Doctor" %}
+                    <li class="nav-item"><a class="nav-link" href="/patients">View Patients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/appointments">Manage Appointments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/prescriptions">Prescriptions</a></li>
+
+                {% elif current_user.usertype == "Nurse" %}
+                    <li class="nav-item"><a class="nav-link" href="/patients">Monitor Patients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/appointments">Assist in Appointments</a></li>
+
+                {% elif current_user.usertype == "Receptionist" %}
+                    <li class="nav-item"><a class="nav-link" href="/patients">Register Patients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/appointments">Schedule Appointments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/billing">Manage Billing</a></li>
+
+                {% elif current_user.usertype == "Pharmacist" %}
+                    <li class="nav-item"><a class="nav-link" href="/prescriptions">View Prescriptions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/medications">Medications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/inventory">Manage Inventory</a></li>
+                {% endif %}
+                
+                <!-- User Welcome & Logout -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
+                        Welcome {% if current_user.usertype == "Doctor" %}Dr. {% endif %}{{ current_user.username }}
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                </li>
+
+            {% else %}
+                <!-- Authentication Links -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-toggle="dropdown">
+                        Authentication
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/login">Login</a>
+                    </div>
+                </li>
+            {% endif %}
+        </ul>
+
+        <!-- Search Bar -->
+        <form class="form-inline my-2 my-lg-0" action="/search" method="post">
+            <input class="form-control mr-sm-2" type="search" placeholder="How Can We Help..." name="search" />
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<!-- Flash Messages -->
+<div class="container mt-3">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<!-- Main Content -->
+<main class="content">
+    {% block body %}{% endblock body %}
+</main>
+
+<!-- About Us Section -->
+<section class="about-us" aria-labelledby="about-us-heading">
+    <h1 id="about-us-heading">What is DJMC</h1>
+    <h4>
+        <p>DJMC is a supplier of medicine which tries to supply medicine to the local public by cutting the middle man.</p>
+        <p>All customers can order medicine from our website and special discount is available for medical store owners*. Medicine will be delivered door-to-door by our delivery agents.</p>
+    </h4>
+    <h2 id="team-heading">Meet Our Team</h2>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='ico.jpg') }}" alt="Jeremy's profile picture" />
+            <h3>Jeremy</h3>
+            <p>Lead Developer & Co-Founder</p>
+            <p>Passionate about healthcare innovation and technology.</p>
+        </div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='ico.jpg') }}" alt="Praise O.'s profile picture" />
+            <h3>Praise O.</h3>
+            <p>UI/UX Designer & Co-Founder</p>
+            <p>Focused on creating user-friendly healthcare solutions.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Me Section -->
+<section class="contact-me" aria-labelledby="contact-me-heading">
+    <h1 id="contact-me-heading">Get in Touch</h1>
+    <h4>
+        <p>Reach us via our social media handles or send us a message below.</p>
+    </h4>
+    <div class="social-links">
+        <a href="https://twitter.com/djmc" target="_blank" aria-label="Twitter">Twitter</a>
+        <a href="https://facebook.com/djmc" target="_blank" aria-label="Facebook">Facebook</a>
+        <a href="https://instagram.com/djmc" target="_blank" aria-label="Instagram">Instagram</a>
+    </div>
+    <form class="contact-form" id="contactForm" aria-label="Contact form">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required aria-required="true" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required aria-required="true" />
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="5" required aria-required="true"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+</section>
+    
+
+<!-- Footer -->
+<footer class="footer bg-dark text-white py-7 mt-2">
+        <p class="cpryt">Designed by:   Jeremy   &   Praise O. </p>
+        <p> | </p>
+        <p class="sts"> DanJola Medic Center &copy; 2025</p>
+        </hr>
+</footer>
+
+</div>
+
+<!-- Scripts -->
+<script
+src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+crossorigin="anonymous"
+></script>
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+crossorigin="anonymous"
+></script>    
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script>
+var socket = io.connect('http://127.0.0.1:5000');
+
+// Listen for new appointment notifications
+socket.on('new_appointment', function (data) {
+    alert(data.message);
+});
+
+// Listen for new payment notifications
+socket.on('new_payment', function (data) {
+    alert(data.message);
+});
+</script>

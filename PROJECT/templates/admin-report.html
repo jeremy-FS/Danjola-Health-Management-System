@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Financial Reports{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Financial Reports</h2>
+
+    <h3>Total Earnings</h3>
+    <p><strong>Total Revenue:</strong> ${{ total_revenue }}</p>
+    <p><strong>Unpaid Bills:</strong> ${{ total_unpaid }}</p>
+
+    <h3>Patient Expenditure</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>Patient</th><th>Total Spent ($)</th></tr>
+        </thead>
+        <tbody>
+            {% for patient, amount in patient_expenditures %}
+            <tr>
+                <td>{{ patient }}</td>
+                <td>${{ amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Detailed Transactions</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>Patient</th><th>Service</th><th>Amount ($)</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+            {% for bill in all_bills %}
+            <tr>
+                <td>{{ bill.patient.name }}</td>
+                <td>{{ bill.service }}</td>
+                <td>{{ bill.amount }}</td>
+                <td>{{ bill.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

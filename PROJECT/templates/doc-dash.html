@@ -1,0 +1,12 @@
+{% extends "base2.html" %}
+{% block title %}Doctor Dashboard{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Welcome Dr. {{ current_user.username }}</h2>
+    <ul>
+        <li><a href="{{ url_for('add_patient') }}" class="btn btn-info">View Patients</a></li>
+        <li><a href="{{ url_for('appointments') }}" class="btn btn-warning mt-2">Manage Appointments</a></li>
+        <li><a href="{{ url_for('prescriptions') }}" class="btn btn-primary mt-2">Prescriptions</a></li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Pharmacist Dashboard{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Welcome {{ current_user.username }}</h2>
+    <ul>
+        <li><a href="{{ url_for('prescriptions') }}" class="btn btn-primary">View Prescriptions</a></li>
+        <li><a href="{{ url_for('inventory') }}" class="btn btn-warning mt-2">Manage Inventory</a></li>
+    </ul>
+</div>
+{% endblock %}

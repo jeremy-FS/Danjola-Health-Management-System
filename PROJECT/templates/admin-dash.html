@@ -1,0 +1,14 @@
+{% extends "base2.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Admin Dashboard</h2>
+    <ul>
+        <li><a href="{{ url_for('signup') }}" class="btn btn-primary">Create New User</a></li>
+        <li><a href="{{ url_for('manage_users') }}" class="btn btn-secondary mt-2">Manage Users</a></li>
+        <li><a href="{{ url_for('admin_reports') }}" class="btn btn-secondary mt-2">Admin Reports</a></li> 
+        <li><a href="{{ url_for('manage_patients') }}" class="btn btn-info mt-2">Manage Patients</a></li>
+        <li><a href="{{ url_for('view_appt') }}" class="btn btn-warning mt-2">View Appointments</a></li>
+    </ul>
+</div>
+{% endblock %}

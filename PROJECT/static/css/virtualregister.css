@@ -1,0 +1,280 @@
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.pricing .row {
+  padding-top: 0px;
+}
+
+.card {
+  margin-top: 57px;
+  border-radius: 8px 40px 40px 8px;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 1px 0px 8px 2px rgb(234, 232, 239);
+}
+
+.bg-dark {
+  background-color: rgb(227, 27, 27);
+  background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
+}
+
+/* =======================
+   General Styles 
+   ======================= */
+   body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f8fb;
+    margin: 0;
+    padding: 0;
+}
+
+/* =======================
+   Navbar 
+   ======================= */
+.navbar {
+    background: #007BFF;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: white;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* =======================
+   Container / Layout 
+   ======================= */
+.container {
+    width: 85%;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =======================
+   Tables 
+   ======================= */
+.table {
+    margin-top: 20px;
+}
+
+.table th {
+    background: #007BFF;
+    color: white;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* =======================
+   Buttons 
+   ======================= */
+.btn {
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background: #007BFF;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-danger {
+    background: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background: #b02a37;
+}
+
+.btn-success {
+    background: #28a745;
+    border: none;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+/* =======================
+   Forms 
+   ======================= */
+form input,
+form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* =======================
+   Flash Messages 
+   ======================= */
+.flash-messages {
+    margin-top: 20px;
+}
+
+.alert {
+    padding: 12px;
+    border-radius: 5px;
+}
+
+
+label {
+  color: white;
+  margin-top: 15px;
+  font-family: "Itim", cursive;
+}
+
+.jumbotron {
+  background-color: rgb(223, 134, 17);
+  background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
+}
+
+#gender {
+  width: 300px;
+}
+
+#slot {
+  width: 300px;
+}
+
+#dept {
+  width: 300px;
+}
+
+.form-group input {
+  width: 300px;
+  border: none;
+  /* border-bottom: 1px solid purple; */
+  border-bottom: 2px solid #add8e6;
+  outline: none;
+  font-size: 22px;
+  margin-bottom: 5px;
+  font-family: "Itim", cursive;
+  border-radius: 15px;
+}
+
+option {
+  width: 400px;
+  border: none;
+  border-bottom: 2px solid rgb(207, 183, 29);
+  outline: none;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.form-group input:hover {
+  background-color: ghostwhite;
+}
+
+#btn {
+  background-color: #add8e6;
+  font-size: 20px;
+  border-radius: 15px;
+  border: none;
+  position: relative;
+  width: 300px;
+}
+
+#btn:hover {
+  background-color: rgba(255, 255, 255, 0.333);
+  color: rgb(0, 0, 0);
+  background-image: linear-gradient(315deg, rgb(226, 230, 224) 0%, #add8e6 74%);
+}
+#btn btn-dark btn-sm btn-block {
+  background-color: #e9ecee;
+}
+#form-control mr-sm-2 {
+  border-radius: 50px;
+}
+#text-center bg-dark text-white {
+  padding: 10px;
+}
+.fade-bc {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px; /* Optional: Adds some padding around the text */
+    border-radius: 5px; /* Optional: Adds rounded corners */
+    height: 100px;
+    width: 100%;
+  }
+
+
+  /* Wrapper to push footer to the bottom */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Content area grows to push footer down */
+.content {
+  flex: 1;
+}
+
+/* =======================
+   Footer 
+   ======================= */
+   footer { 
+    bottom: 0;
+    background: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* FOOTER */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-right: 0;
+  font-size: 25px;
+  padding-bottom:0;
+  border-top: 1px solid rgba(85, 86, 86, 0.95);
+  padding-top: 5px;
+  animation: fade-in 0.5s 0.3s backwards;
+
+}
+
+.cpryt {
+  opacity: 2.5;
+  font-size: 20px;
+}
+
+.sts {
+  opacity: 2.5;
+  font-size: 15px;
+}

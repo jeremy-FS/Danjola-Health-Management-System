@@ -1,0 +1,11 @@
+{% extends "base2.html" %}
+{% block title %}Nurse Dashboard{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Welcome Nurse {{ current_user.username }}</h2>
+    <ul>
+        <li><a href="{{ url_for('add_patient') }}" class="btn btn-info">Monitor Patients</a></li>
+        <li><a href="{{ url_for('appointments') }}" class="btn btn-warning mt-2">Assist with Appointments</a></li>
+    </ul>
+</div>
+{% endblock %}

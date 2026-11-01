@@ -1,0 +1,58 @@
+{% extends "base2.html" %}
+{% block title %}Manage Appointments{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Appointments</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>ID</th><th>Patient</th><th>Doctor</th><th>Date</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.id }}</td>
+                <td>{{ appointment.patient.name }}</td>
+                <td>{{ appointment.doctor.username }}</td>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.status }}</td>
+                <td>
+                    {% if current_user.usertype == "Receptionist" %}
+                    <form action="{{ url_for('cancel_appointment', id=appointment.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                    </form>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if current_user.usertype == "Doctor" %}
+                        <a href="{{ url_for('accept_appointment', id=appointment.id) }}" class="btn btn-success btn-sm">Accept</a>
+                        <a href="{{ url_for('reject_appointment', id=appointment.id) }}" class="btn btn-danger btn-sm">Reject</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if current_user.usertype == "Receptionist" %}
+    <h3>Schedule Appointment</h3>
+    <form method="POST">
+        <select name="patient_id" class="form-control" required>
+            <option value="" disabled selected>Select Patient</option>
+            {% for patient in patients %}
+            <option value="{{ patient.id }}">{{ patient.name }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="doctor_id" class="form-control mt-2" required>
+            <option value="" disabled selected>Select Doctor</option>
+            {% for doctor in doctors %}
+            <option value="{{ doctor.id }}">Dr. {{ doctor.username }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="date" name="date" class="form-control mt-2" required>
+        <button type="submit" class="btn btn-primary mt-3">Book Appointment</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Medications List{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Available Medications</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>Name</th><th>Type</th><th>Price ($)</th><th>Stock</th></tr>
+        </thead>
+        <tbody>
+            {% for drug in drugs %}
+            <tr>
+                <td>{{ drug.name }}</td>
+                <td>{{ drug.category }}</td>
+                <td>{{ drug.price }}</td>
+                <td>{{ drug.stock }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base2.html" %}
+{% block title %}Edit Patient{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Edit Patient Information</h2>
+    <form method="POST">
+        <label>Name:</label>
+        <input type="text" name="name" value="{{ patient.name }}" class="form-control" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" value="{{ patient.email }}" class="form-control mt-2">
+
+        <label>Gender:</label>
+        <select name="gender" class="form-control mt-2" required>
+            <option value="Male" {% if patient.gender == "Male" %}selected{% endif %}>Male</option>
+            <option value="Female" {% if patient.gender == "Female" %}selected{% endif %}>Female</option>
+        </select>
+
+        <label>Age:</label>
+        <input type="number" name="age" value="{{ patient.age }}" class="form-control mt-2" required>
+
+        <hr>
+
+        <!-- Add New Diagnosis -->
+        <h4>Add Diagnosis</h4>
+        <input type="text" name="new_diagnosis" class="form-control mt-2" placeholder="New Diagnosis">
+
+        <!-- Add New Medication -->
+        <h4>Add Medication</h4>
+        <input type="text" name="new_medication" class="form-control mt-2" placeholder="Medication Name">
+        <input type="text" name="new_dosage" class="form-control mt-2" placeholder="Dosage">
+
+        <button type="submit" class="btn btn-success mt-3">Save Changes</button>
+    </form>
+
+    <a href="{{ url_for('view_patient', pid=patient.pid) }}" class="btn btn-secondary mt-3">Cancel</a>
+</div>
+{% endblock %}

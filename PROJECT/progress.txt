@@ -1,0 +1,24 @@
+so am planning on making appointments and doctor booking how is it going to be:
+
+Appointments:
+    Booking:
+        receptionist:
+            patients books appointments for doctors base on available time >>> patient.html
+            monitors if appointments are accepted or rejected >>> appointment.html filter accepted green color and rejected red color
+                accepted appointments:
+                    lists of all accepted appointment
+                declined appointment
+                    list of all rejected appointment 
+        Doctor/Nurse:
+            appointments:
+            gets list of all appointments in booking: >>> booking.html
+                edit each as fit to his time
+                    accepts appointments
+                    rejects appointments
+            accepted appointments:
+                lists of all accepted appointment
+            declined appointment
+                list of all rejected appointment 
+            
+key >>> continous improvement
+

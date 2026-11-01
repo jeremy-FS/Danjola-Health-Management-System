@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Billing System{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Billing System</h2>
+
+    <h3>Unpaid Bills</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>Patient</th><th>Service</th><th>Amount ($)</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            {% for bill in unpaid_bills %}
+            <tr>
+                <td>{{ bill.patient.name }}</td>
+                <td>{{ bill.service }}</td>
+                <td>{{ bill.amount }}</td>
+                <td>{{ bill.status }}</td>
+                <td>
+                    <form action="{{ url_for('mark_paid', id=bill.id) }}" method="POST">
+                        <button type="submit" class="btn btn-success btn-sm">Mark as Paid</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Add New Bill</h3>
+    <form method="POST">
+        <select name="patient_id" class="form-control" required>
+            <option value="" disabled selected>Select Patient</option>
+            {% for patient in patients %}
+            <option value="{{ patient.id }}">{{ patient.name }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="text" name="service" class="form-control mt-2" placeholder="Service (e.g., Consultation, Surgery, Medication)" required>
+        <input type="number" name="amount" class="form-control mt-2" placeholder="Amount ($)" required>
+
+        <button type="submit" class="btn btn-primary mt-3">Add Bill</button>
+    </form>
+</div>
+{% endblock %}
